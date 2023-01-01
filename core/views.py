@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
-from .models import CreatorPost
-
+from .models import CreatorPost, videoObject
+from .forms import videoObjectCreationForm
 
 # Create your views here.
 
@@ -91,3 +91,24 @@ def registerPage(request):
     }
 
     return render(request, 'core/login-register.html', ctx)
+
+def creatorPostPage(request, pk):
+    post = CreatorPost.objects.get(id=pk)
+
+    ctx = {
+        'post':post
+    }
+    return render(request, 'core/creator-post.html', ctx)
+
+
+def videoViewingPage(request, pk): # temp using pk:id, switch to UUID!
+
+    video_object = videoObject.objects.get(id=pk)
+    video_raw = video_object.rawvideo
+
+    ctx = {
+        'video_raw':video_raw,
+        'video_object':video_object
+    }
+
+    return render(request, 'core/video.html', ctx)

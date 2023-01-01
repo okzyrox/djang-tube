@@ -3,16 +3,20 @@
 {% block content %}
 
     {% for post in posts %}
-        <div>
-            <i>name: {{ post.post_title }}</i>
+        <div class="home-post">
+            <a href="{% url 'creator-post' post.id %}"><b>Post</b></a>
+
+            <div class="home-post-content">
+                <i>name: {{ post.post_title }}</i>
+                <br>
+                <br>
+                <i>id: {{ post.id }}</i>
+                <br>
+                <p>
+                    desc: {{ post.post_content|truncatechars:20 }}
+                </p>
+            </div>
             <br>
-            <br>
-            <i>id: {{ post.id }}</i>
-            <br>
-            <p>
-                desc: {{ post.post_content|truncatechars:20 }}
-            </p>
         </div>
-        <br>
     {% endfor %}
 {% endblock content %}

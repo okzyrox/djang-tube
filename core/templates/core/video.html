@@ -1,0 +1,27 @@
+{% extends 'inherit_main.html' %}
+
+{% block content %}
+    <div>
+        <div class="video-container-r">
+            <div>
+                <h2>Title : {{ video_object.video_title }}</h2>
+                <h4>Posted by : {{ video_object.video_creator }}</h4>
+            </div>
+            <br>
+            <div class="video-container-v">
+                <video controls width="400">
+                    <source src="{{ MEDIA_URL }}{{ video_raw }}" type="video/mp4">
+                    Your Browser does not support video!
+                </video>
+            </div>
+            <i>Uploaded at {{ video_object.created }} ({{ video_object.created|timesince }} ago)</i>
+            <div>
+                <h3>Description</h3>
+                <p>
+                    {{ video_object.video_description }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
