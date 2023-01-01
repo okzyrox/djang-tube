@@ -1,0 +1,31 @@
+{% extends 'inherit_main.html' %}
+
+{% block content %}
+
+    <div>
+        <h2>Video Uploader</h2>
+        <form enctype="multipart/form-data" method="POST" action="">
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                     {% if field.name == 'rawvideo' %}
+                         <div class="form__group">
+                             <input type="file" id="rawvideo" name="rawvideo">
+                         </div>
+                     {% else %}
+                         <div class="form__group">
+                             <p>
+                                 <label for="">{{field.label}}</label>
+                                 {{field}}
+                             </p>
+                         </div>
+                     {% endif %}
+
+                </div>
+
+            {% endfor %}
+            <input type="submit"/>
+        </form>
+    </div>
+
+{% endblock content %}

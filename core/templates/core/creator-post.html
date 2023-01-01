@@ -1,0 +1,21 @@
+{% extends 'inherit_main.html' %}
+
+{% block content %}
+
+    <div>
+        <div>
+            <h2>Title - {{ post.post_title }}</h2>
+            <i>Created by {{ post.post_creator }}</i>
+        </div>
+        <div>
+            <h3>Content:</h3>
+            <div>
+                <p>
+                    {{ post.post_content }}
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
