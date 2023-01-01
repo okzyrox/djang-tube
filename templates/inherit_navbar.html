@@ -25,6 +25,11 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
                 </form>
             </ul>
+            <a href="{% url 'upload-video' %}">
+                <button type="button">
+                    Upload Video
+                </button>
+            </a>
         {% else %}
             <i>Not currently logged-In!</i>
         {% endif %}

@@ -6,6 +6,7 @@ import uuid
 # Create your models here.
 
 class CreatorPost(models.Model):
+
     post_creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     post_title = models.CharField(max_length=100)
     post_content = models.TextField()
@@ -50,3 +51,6 @@ class videoObject(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     class Meta:
         ordering = ['-created']
+
+    def __str__(self):
+        return self.video_title

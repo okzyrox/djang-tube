@@ -4,4 +4,10 @@ from .models import videoObject
 class videoObjectCreationForm(ModelForm):
     class Meta:
         model=videoObject
-        fields=['video_title', 'video_description', 'video_topic', 'rawvideo']
+        fields=[
+            'video_title',
+            'video_description',
+            'video_topic',
+            'video_gametopic_game',
+            'rawvideo'
+        ]

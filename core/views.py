@@ -116,3 +116,27 @@ def videoViewingPage(request, pk): # temp using pk:id, switch to UUID!
     }
 
     return render(request, 'core/video.html', ctx)
+
+@login_required(login_url='login')
+def videoUploadingFormPage(request):
+
+    web_name = 'upload video'
+
+    if request.method == 'POST':  # if post
+        form = videoObjectCreationForm(request.POST or None, request.FILES or None)
+        if form.is_valid():  # if valid
+            videoObj = form.save(commit=False)  # create instance
+            videoObj.video_creator = request.user
+            videoObj.save()
+            return redirect('home')
+        else:
+            print("Form Invald", request.user)
+            print(request.POST)
+
+    form = videoObjectCreationForm()
+    ctx = {
+        'form':form,
+        'web_name':web_name
+    }
+
+    return render(request, 'core/upload-video.html', ctx)
