@@ -6,16 +6,24 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
+from .models import CreatorPost
+
 
 # Create your views here.
 
-posts = [
-    {'id':1, 'name':'Post 1'},
-    {'id':2, 'name':'Post 2'},
-    {'id':3, 'name':'Post 3'}
-]
+# posts = [
+#     {'id':1, 'name':'Post 1'},
+#     {'id':2, 'name':'Post 2'},
+#     {'id':3, 'name':'Post 3'}
+# ]
 
 def home(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+
+    posts = CreatorPost.objects.filter(
+        Q(post_title__icontains=q) |
+        Q(post_content__icontains=q))
+
 
     ctx = {
         'posts':posts

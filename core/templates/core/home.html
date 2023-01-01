@@ -4,9 +4,14 @@
 
     {% for post in posts %}
         <div>
-            <i>name: {{ post.name }}</i>
+            <i>name: {{ post.post_title }}</i>
+            <br>
             <br>
             <i>id: {{ post.id }}</i>
+            <br>
+            <p>
+                desc: {{ post.post_content|truncatechars:20 }}
+            </p>
         </div>
         <br>
     {% endfor %}
