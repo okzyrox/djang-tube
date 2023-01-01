@@ -1,0 +1,42 @@
+{% extends 'inherit_main.html' %}
+
+{% block content %}
+
+<div>
+    {% if pagetype == 'login' %}
+    <div class="login">
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <label>Login</label>
+            <a href="{% url 'register' %}">Want to sign-up?</a>
+            <p>
+                <input type="text" name="username" placeholder="Enter Username">
+                <small>username</small>
+                <input type="password" name="password" placeholder="Enter Password">
+                <small>password</small>
+            </p>
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    {% elif pagetype == 'register' %}
+    <div class="signup">
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <label>Register</label>
+            <a href="{% url 'login' %}">Already Signed-Up?</a>
+            {{form.as_p}}
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+
+
+
+
+{% endblock content %}

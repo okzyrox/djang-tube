@@ -1,0 +1,13 @@
+{% extends 'inherit_main.html' %}
+
+{% block content %}
+
+    {% for post in posts %}
+        <div>
+            <i>name: {{ post.name }}</i>
+            <br>
+            <i>id: {{ post.id }}</i>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock content %}
