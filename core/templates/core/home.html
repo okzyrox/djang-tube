@@ -2,12 +2,13 @@
 
 {% block content %}
 
+    <h2>Recent Posts:</h2>
     {% for post in posts %}
         <div class="home-post">
             <a href="{% url 'creator-post' post.id %}"><b>Post</b></a>
 
             <div class="home-post-content">
-                <i>name: {{ post.post_title }}</i>
+                <i>Name: {{ post.post_title }}</i>
                 <br>
                 <br>
                 <i>id: {{ post.id }}</i>
@@ -18,5 +19,22 @@
             </div>
             <br>
         </div>
+    {% endfor %}
+    <hr>
+    <h2>Recent Videos</h2>
+    {% for video in videos %}
+        <span>
+            <div class="home-video">
+                <a href="{% url 'video-view' video.video_uuid %}"><b>Video</b></a>
+                <div class="home-video-content">
+                    <span><i>Title : {{ video.video_title|truncatechars:45 }}</i></span>
+                    <br>
+                    <br>
+                    <i>uuid : {{ video.video_uuid }}</i>
+                    <br>
+                    <i>by : {{ video.video_creator }}</i>
+                </div>
+            </div>
+        </span>
     {% endfor %}
 {% endblock content %}

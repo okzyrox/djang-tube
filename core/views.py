@@ -24,9 +24,13 @@ def home(request):
         Q(post_title__icontains=q) |
         Q(post_content__icontains=q))
 
+    videoposts = videoObject.objects.filter(
+        Q(video_title__icontains=q) |
+        Q(video_description__icontains=q))
 
     ctx = {
-        'posts':posts
+        'posts':posts,
+        'videos':videoposts
     }
 
     return render(request, 'core/home.html', ctx)
@@ -103,7 +107,7 @@ def creatorPostPage(request, pk):
 
 def videoViewingPage(request, pk): # temp using pk:id, switch to UUID!
 
-    video_object = videoObject.objects.get(id=pk)
+    video_object = videoObject.objects.get(video_uuid=pk)
     video_raw = video_object.rawvideo
 
     ctx = {
